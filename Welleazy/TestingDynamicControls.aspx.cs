@@ -18,7 +18,7 @@ namespace Welleazy
                 RadGrid1.DataBind();
             }
 
-            DAta
+            
 
             RadGrid1.DataSource = new object[] { };
             RadGrid1.DataBind();
@@ -31,6 +31,7 @@ namespace Welleazy
                 GridEditableItem edititem = (GridEditableItem)e.Item;
                 string strtxt = edititem.GetDataKeyValue("CategoryId").ToString();
                 strtxt = "1";
+                strtxt = "2";
                 if (strtxt == "0")
                 {
                     edititem["CategoryId"].Controls.Clear();
