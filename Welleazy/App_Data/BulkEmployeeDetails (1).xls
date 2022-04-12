@@ -1,0 +1,9 @@
+<style> .textmode { } </style><div>
+	<table cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_GridView1" style="border-collapse:collapse;">
+		<tr style="color:White;background-color:RoyalBlue;">
+			<th scope="col">EmployeeId</th><th scope="col">EmployeeName</th><th scope="col">Emailid</th><th scope="col">MobileNo</th><th scope="col">CorporateId</th>
+		</tr><tr style="background-color:White;">
+			<td class="textmode">1</td><td class="textmode">XYZ</td><td class="textmode">xyz@gmail.com</td><td class="textmode">9999888800</td><td class="textmode">1</td>
+		</tr>
+	</table>
+</div>

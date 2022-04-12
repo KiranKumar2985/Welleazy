@@ -1,0 +1,510 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="Welleazy.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link href="/images/welleazy-logo.png" rel="icon">
+        <%--<title>Go Welnext</title>--%>
+
+         <!-- Bootstrap CSS CDN -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <%--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">--%>
+
+        <!-- Our Custom CSS -->
+        <link href="../css/style4.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#flip").click(function () {
+            $("#panel").slideToggle("slow");
+        });
+    });
+</script>
+<style> 
+#flip {
+    right:0;
+    float:right;
+  padding: 5px;
+  width:auto;
+  text-align: center;
+  border:1px solid #f1f1f1;
+  background:white;
+}
+
+#panel {
+    width:170px;
+    float:right;
+    right:0;
+  background-color:white;
+  border:1px solid rgba(0,0,0,0.4);
+  display:none;
+  padding:3px;
+  margin-top:-40px;
+  position:relative;
+  font-size:small;
+}    
+       .mandatory {
+           color:red;
+       }
+        .container {
+  position: relative;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.table_space {
+    padding:5px;
+    border:1px solid #f1f1f1;
+}
+.mydatagrid
+{
+width: 80%;
+border: solid 2px black;
+min-width: 80%;
+}
+.header
+{
+background-color: #003399;
+font-family: Arial;
+color: White;
+height: 25px;
+text-align: center;
+font-size: 14px;
+}
+
+.rows
+{
+background-color: #fff;
+font-family: Arial;
+font-size: 14px;
+color: #000;
+min-height: 25px;
+text-align: left;
+}
+.rows:hover
+{
+background-color: #003399;
+color: #fff;
+}
+
+.selectedrow
+{
+background-color: #003399;
+color: red;
+}
+ 
+.mydatagrid a /** FOR THE PAGING ICONS **/
+{
+background-color: Transparent;
+padding: 5px 5px 5px 5px;
+color: #fff;
+text-decoration: none;
+font-weight: bold;
+}
+
+.mydatagrid a:hover /** FOR THE PAGING ICONS HOVER STYLES**/
+{
+background-color: #000;
+color: #fff;
+}
+.mydatagrid span /** FOR THE PAGING ICONS CURRENT PAGE INDICATOR **/
+{
+background-color: #fff;
+color: #000;
+padding: 5px 5px 5px 5px;
+}
+.pager
+{
+background-color: #5badff;
+font-family: Arial;
+color: White;
+height: 30px;
+text-align: left;
+}
+
+.mydatagrid td
+{
+padding: 5px;
+}
+.mydatagrid th
+{
+padding: 5px;
+}
+    .Combo{
+           height:38px;
+           width:216px !important;
+           
+             }
+    .Combo1{
+           height:38px;
+           width:270px !important;
+           
+             }
+    .Combo2{
+           height:38px;
+           width:160px !important;
+           
+             }
+       .Combo3{
+           height:38px;
+           width:110px !important;
+           
+             }
+       .Combo_Export{
+           height:38px;
+           width:80px !important;
+           
+             }
+        .Combo3_Gender{
+           height:38px;
+           width:130px !important;
+           
+             }
+    </style>
+   <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <%--<script type ="text/javascript">
+        function showTime() {
+            var dt = new Date();
+            document.getElementById("test_date").innerText = dt;
+        }
+    </script>--%>
+</head>
+    <body onload="showtime()">
+        <form id="form1" runat="server"  enctype="multipart/form-data">
+            <asp:Label ID="test_date" runat="server" />
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar" style="background:#211f2b;">
+                
+                <div class="sidebar-header" style="background-color:white; padding:2px; text-align:center; ">
+                   <h3><img src="../images/image-logo-welnext.png" /></h3>
+                    <strong style="height:80px;">
+                    <img src="../images/welleazy-logo.png" height="60"/></strong>
+                </div>
+
+                <ul class="list-unstyled components" style="font-size:small; margin-top:-8px; background:#211f2b;">
+                    
+                    <li>
+                        <a href="#homeSubmenu" data-toggle="collapse" id="ClientManagement" runat="server" style="display:none" aria-expanded="false">
+                            <i class="glyphicon glyphicon-briefcase"></i>
+                            Client Management
+                        </a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li><a href="../Admin/AddCorporateDetails.aspx" id="AddCorporateDetails" runat="server" style="display:none" ><i class="glyphicon glyphicon-plus"></i>Manage Corporate</a></li>
+                            <li><a href="../Corporate/BranchManagement.aspx" id="AddBranchDetails" runat="server" style="display:none"><i class="glyphicon glyphicon-list"></i>List of Branch</a></li>
+                            <li><a href="../Admin/ListOfEmployee.aspx" id="ListOfEmployees" runat="server" style="display:none"><i class="glyphicon glyphicon-list"></i>List of Employee</a></li>
+                            <li><a href="~/CorporateEmployeeLoginCreation.aspx" id="CorporateEmployeeLoginCreation" runat="server" style="display:none"><i class="glyphicon glyphicon-list"></i>Employee Login Creation</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#TestManagement" data-toggle="collapse" id="Test_Management" runat="server" style="display:none" aria-expanded="false">
+                            <i class="fa fa-heartbeat"></i>
+                            Test Management    
+                        </a>
+                         <ul class="collapse list-unstyled" id="TestManagement">
+                            <li><a href="../Test/Individual_Test.aspx" id="IndividualTest" runat="server" style="display:none"><i class="fa fa-stethoscope"></i>Individual Test</a></li>
+                            <li><a href="../Test/Test_Package.aspx" id="TestPackage" runat="server" style="display:none"><i class="glyphicon glyphicon-briefcase"></i>Test Package</a></li>
+                        </ul>
+                     </li>
+                    <li>
+                        <a href="#ServiceProvider" data-toggle="collapse" id="ServiceProviders" runat="server" style="display:none" aria-expanded="false">
+                            <i class="glyphicon glyphicon-briefcase"></i>
+                            Service Provider    
+                        </a>
+                         <ul class="collapse list-unstyled" id="ServiceProvider">
+                            <li><a href="/diagnostic_center/AddNewDc.aspx" runat="server" id="AddNewDC" style="display:none"><i class="fa fa-stethoscope"></i>Add Service Provider</a></li>
+                            <li><a href="/diagnostic_center/sendDCRequest.aspx" runat="server" id="SendDCRequest" style="display:none"><i class="glyphicon glyphicon-user"></i>Generate Link For Provider</a></li>
+                            <li><a href="/Diagnostic_center.aspx" runat="server" id="DiagnosticCenter" style="display: none;"><i class="glyphicon glyphicon-list"></i>Service Provider List</a></li>
+                            <li><a href="/diagnostic_center/ServiceProviderList.aspx" id="ServiceProviderList" runat="server" style="display:none"><i class="glyphicon glyphicon-list"></i>Send Link Provider List</a></li>
+                            <li><a href="/diagnostic_center/dcFeedback.aspx" id="DCFeedBack" runat="server" style="display:none" ><i class="glyphicon glyphicon-phone"></i>Customers Feedback</a></li>
+                        </ul>
+                     </li>
+                     <li>
+                        <a href="#PhysicalMedicals" data-toggle="collapse" id="PysicalMedical" runat="server" style="display:none" aria-expanded="false">
+                            <i class="glyphicon glyphicon-duplicate"></i>
+                            Physical Medicals
+                        </a>
+                        <ul class="collapse list-unstyled" id="PhysicalMedicals">
+                            <li><a href="~/Case/AddCase.aspx" id="AddCase" runat="server" style="display:none"><i class="glyphicon glyphicon-plus"></i>Add A Case</a></li>
+                            <li><a href="~/Case/Case.aspx" id="CaseList" runat="server" style="display:none"><i class="glyphicon glyphicon-list"></i>Case List</a></li>
+                            <li><a href="~/Case/AppointmentList.aspx" id="AppointmentList" runat="server" style="display:none;"><i class="glyphicon glyphicon-list"></i>Appointment List</a></li>
+                            <li><a href="#" id="ClarificationList" runat="server" style="display:none"><i class="glyphicon glyphicon-list"></i>Clarification List</a></li>
+                            <li><a href="~/Case/ClosedAppointmentList.aspx" id="ClosedAppointmentList" runat="server" style="display:none;"><i class="glyphicon glyphicon-list"></i>Closed Appointment List</a></li>
+                            <li><a href="#" id="EscalatedCaseList" runat="server" style="display:none"><i class="glyphicon glyphicon-list"></i>Escalated Case List</a></li>
+                            <li><a href="~/Case/QCCheckListView.aspx" id="QCCheckList" runat="server" style="display:none;"><i class="glyphicon glyphicon-list"></i>QC Check List</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#SecondOpinion" data-toggle="collapse" id="Second_Opinion" runat="server" style="display:none" aria-expanded="false">
+                            <i class="fa fa-american-sign-language-interpreting"></i>
+                           Second Opinion
+                        </a>
+                        <ul class="collapse list-unstyled" id="SecondOpinion">
+                            <li><a href="~/Interpretation/AddCase.aspx" id="SecondOpinionAddCase" runat="server" style="display:none"><i class="glyphicon glyphicon-plus"></i>Add Second Opinion Case</a></li>
+                            <li><a href="~/Interpretation/InterpretationCaseList.aspx" id="SecondOpinionActiveCase" runat="server" style="display:none"><i class="glyphicon glyphicon-list"></i>Active Second Opinion Cases</a></li>
+                            <li><a href="~/Interpretation/ClosedInterpretationCaseList.aspx" id="SecondOpinionClosedCase" runat="server" style="display:none"><i class="glyphicon glyphicon-list"></i>Closed Second Opinion Cases</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#MisReport" data-toggle="collapse" id="MIS" runat="server" style="display:none" aria-expanded="false">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                            MIS Report
+                        </a>
+                        <ul class="collapse list-unstyled" id="MisReport">
+                            <li><a href="#" id="ArchievedCaseList" runat="server" style="display:none"><i class="glyphicon glyphicon-plus"></i>Archived Case List</a></li>
+                            <li><a href="#" id="OpenQRCToken" runat="server" style="display:none"><i class="glyphicon glyphicon-list"></i>Open QRC Token</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#TVConsultation" data-toggle="collapse" id="TeleVideoConsultation" runat="server" style="display:none" aria-expanded="false">
+                            <i class="glyphicon glyphicon-facetime-video"></i>
+                            Tele/Video Consultation
+                        </a>
+                        <ul class="collapse list-unstyled" id="TVConsultation">
+                            <%--<li><a href="#" id="AddVirtualMERCase" runat="server" style="display:none;"><i class="glyphicon glyphicon-plus"></i>Add Virtual MER Case</a></li>--%>
+                            <%--<li><a href="~/Case/AddEConsultantCase.aspx" id="AddVirtualMERCase" runat="server" style="display:block;"><i class="glyphicon glyphicon-plus"></i>Add EConsultant Case Details</a></li>
+                            <li><a href="~/Case/EConsultantCaseDetails.aspx" id="A1" runat="server" style="display:block;"><i class="glyphicon glyphicon-plus"></i>EConsultant Case Details</a></li>
+                            <li><a href="~/Case/AddSpecialConsultantCase.aspx" id="AddVirtualMERCase1" runat="server" style="display:block;"><i class="glyphicon glyphicon-plus"></i>Add Special Consultation Case</a></li>
+                            <li><a href="~/Case/SpecialConsultationCaseDetails.aspx" id="A2" runat="server" style="display:block;"><i class="glyphicon glyphicon-plus"></i>Special Consultation Case Details</a></li>--%>
+                            <%--<li><a href="~/Appointment/EConsultantAppointment.aspx" id="EConsultantAppointmentList" runat="server" style="display:block;"><i class="glyphicon glyphicon-list"></i>EConsultant Appointment List</a></li>
+                            <li><a href="~/Appointment/SpecialistConsultantAppointment.aspx" id="SpecialConsultationAppointmentList" runat="server" style="display:block;"><i class="glyphicon glyphicon-list"></i>SpecialConsultation Appointment List</a></li>--%>
+
+                            <li><a href="~/Case/ConsultationCaseDetails.aspx" id="ConsultationCaseDetails" runat="server" style="display:none;"><i class="glyphicon glyphicon-plus"></i>Add Consultation Case Details</a></li>
+                            <li><a href="~/Case/ViewConsultationCaseDetails.aspx" id="ViewConsultationCaseDetails" runat="server" style="display:none;"><i class="glyphicon glyphicon-plus"></i>View Consultation Case Details List</a></li>
+                            <li><a href="~/Appointment/ConsultationCaseAppointmentDetails.aspx" id="ConsultationCaseAppointmentDetails" runat="server" style="display:none;"><i class="glyphicon glyphicon-plus"></i>Consultation Case Appointment Details List</a></li>
+                            <li><a href="~/Appointment/ConsultationCaseClosedAppointmentDetails.aspx" id="ConsultationCaseClosedAppointmentDetails" runat="server" style="display:none;"><i class="glyphicon glyphicon-plus"></i>Consultation Case Closed Appointment Details List</a></li>
+                            
+                            <%--<li><a href="~/Appointment/EConsultantClosedAppointment.aspx" id="EConsultantClosedAppointmentList" runat="server" style="display:block;"><i class="glyphicon glyphicon-list"></i>EConsultant Closed Appointment List</a></li>
+                            <li><a href="~/Appointment/SpecialistConsultantClosedAppointment.aspx" id="SpecialConsultationClosedAppointmentList" runat="server" style="display:block;"><i class="glyphicon glyphicon-list"></i>SpecialConsultation Closed Appointment List</a></li>--%>
+                            <li><a href="#" id="VMOpenList" runat="server" style="display:none;"><i class="glyphicon glyphicon-list"></i>VM Open List</a></li>
+                            <li><a href="#" id="VMAppointmentList" runat="server" style="display:none;"><i class="glyphicon glyphicon-list"></i>VM Appointment List</a></li>
+                            <li><a href="#" id="ClosedVMList" runat="server" style="display:none;"><i class="glyphicon glyphicon-list"></i>Closed VM List </a></li>
+                            <li><a href="#" id="VMEscalatedCaseList" runat="server" style="display:none;"><i class="glyphicon glyphicon-list"></i>VM Escalated Case List </a></li>
+                            <li><a href="#" id="VMMIS" runat="server" style="display:none;"><i class="glyphicon glyphicon-flag"></i>VM-MIS</a></li>
+                            <li><a href="#" id="VM_OpenQRCToken" runat="server" style="display:none;"><i class="glyphicon glyphicon-flag"></i>Open QRC Token</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#Users" data-toggle="collapse" aria-expanded="false" id="UserMenu" runat="server" style="display:none" >
+                            <i class="glyphicon glyphicon-user"></i>
+                            Users
+                        </a>
+                        <ul class="collapse list-unstyled" id="Users">
+                            <li><a href="/AddUser.aspx" id="AddUser" runat="server" style="display:block;"><i class="glyphicon glyphicon-plus"></i>Add User</a></li>
+                            <li><a href="~/Master/AddDoctorDetails.aspx" id="AddDoctor" runat="server" style="display:block;"><i class="glyphicon glyphicon-plus"></i>Add Doctor</a></li>
+                            <li><a href="/UserList.aspx" id="UserList" runat="server" style="display:none;"><i class="glyphicon glyphicon-list"></i>User List</a></li>
+                            <li><a href="#" id="Permission" runat="server" style="display:none;"><i class="glyphicon glyphicon-list"></i>Permission </a></li>
+                            <li><a href="/Role.aspx" id="Role" runat="server" style="display:block;"><i class="glyphicon glyphicon-pencil"></i>Role </a></li>
+                            <li><a href="/SubRole.aspx" id="SubRole" runat="server" style="display:block;"><i class="glyphicon glyphicon-edit"></i>Sub Role</a></li>
+                            <li><a href="/UserPermission.aspx" id="UsersPermission" runat="server" style="display:block;"><i class="glyphicon glyphicon-flag"></i>Users Permission</a></li>
+                            <li><a href="#" id="ChangePassword" runat="server" style="display:none;"><i class="glyphicon glyphicon-flag"></i>Change Password</a></li>
+                        </ul>
+                    </li> 
+                         <li>
+                        <a href="#mastermangement" data-toggle="collapse" id="MasterManagement" runat="server" style="display:none" aria-expanded="false">
+                            <i class="glyphicon glyphicon-briefcase"></i>
+                            Master Management
+                        </a>
+                        <ul class="collapse list-unstyled" id="mastermangement">
+                            <li><a href="../Master/AddProduct.aspx" id="AddProduct" runat="server" style="display:none"><i class="glyphicon glyphicon-plus"></i>Add Product</a></li>
+                            <li><a href="../Master/AddProductSubcategory.aspx" id="AddProductSubCategory" runat="server" style="display:none"><i class="glyphicon glyphicon-plus"></i>Add Product Serivces</a></li>
+                            <li><a href="../Master/AddBranch.aspx" id="AddBranch" runat="server" style="display:none"><i class="glyphicon glyphicon-plus"></i>Add Branch</a></li>
+                            <li><a href="../Master/AddDistrict.aspx" id="AddDistrict" runat="server" style="display:none"><i class="glyphicon glyphicon-plus"></i>Add District</a></li>
+                            <li><a href="../Master/AddState.aspx" id="AddState" runat="server" style="display:none"><i class="glyphicon glyphicon-plus"></i>Add State</a></li>
+                            <%--<li><a href="../Master/AddDoctorDetails.aspx"><i class="glyphicon glyphicon-plus"></i>Add Doctor Details</a></li>--%>
+                            <li><a href="../Master/DoctorQualification.aspx" id="AddDoctorQualification" runat="server" style="display:none"><i class="glyphicon glyphicon-plus"></i>Add Doctor Qualification</a></li>
+                            <li><a href="../Master/AddPermission.aspx"><i class="glyphicon glyphicon-plus"></i>Add Permission</a></li>
+                            <li><a href="../Master/AddSubPermission.aspx"><i class="glyphicon glyphicon-plus"></i>Add Sub Permission</a></li>
+                            <li><a href="../Master/AddSpecialities.aspx" id="AddSpecialities" runat="server" style="display:none"><i class="glyphicon glyphicon-plus"></i>Add Specialities</a></li>
+                            <li><a href="../Master/AddTypeOfProvider.aspx" id="AddTypeOfProvider" runat="server" style="display:none"><i class="glyphicon glyphicon-plus"></i>Add Type Of Provider</a></li>
+                            <li><a href="../Master/AddGenericTest.aspx" id="AddGenericTest" runat="server" style="display:none"><i class="glyphicon glyphicon-plus"></i>Welleazy Generic Test</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#adminmangement" data-toggle="collapse" id="Admin_Management" runat="server" style="display:none" aria-expanded="false">
+                            <i class="glyphicon glyphicon-briefcase" > </i>
+                            Admin Management
+                        </a>
+                        <ul class="collapse list-unstyled" id="adminmangement">
+                            <li><a href="../Admin/ProductServicesMapping.aspx" id="ProductServiceMapping" runat="server" style="display:none"><i class="glyphicon glyphicon-plus"></i>Product Services Mapping</a></li>
+                            <li><a href="~/LoginCreation.aspx" id="AdminLoginCreation" runat="server" style="display:none"><i class="glyphicon glyphicon-plus"></i>Login Creation</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#DoctorPrescription" data-toggle="collapse" id="Doctor_Prescription" runat="server" style="display:none" aria-expanded="false">
+                            <i class="glyphicon glyphicon-briefcase" > </i>
+                            Doctor Prescription
+                        </a>
+                        <ul class="collapse list-unstyled" id="DoctorPrescription">
+                            <li><a href="../Case/DoctorPrescription.aspx" id="PatientPrescription" runat="server" style="display:none"><i class="glyphicon glyphicon-plus"></i>Patient Prescription Form</a></li>
+                            
+                        </ul>
+                    </li>
+                   
+                   
+                    <li>
+                        <a href="#" style="display:none">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                            Annual health check up
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" style="display:none">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                            Pre-employment
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" style="display:none">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                            Drug tests  
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" style="display:none">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                            Medical room management
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" style="display:none">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                            Pharmacy
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" style="display:none">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                            Equipment management
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" style="display:none">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                            Vaccination 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" style="display:none">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                            Covid testing
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" style="display:none">
+                           <i class="glyphicon glyphicon-info-sign"></i>
+                            Doctors
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" style="display:none">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                            Independent Ambulance Service
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" style="display:none">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                            Doctors and Ambulance Service
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" style="display:none">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                            Second Opinion
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" style="display:none">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                            Visiting Doctors
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" style="display:none">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                            Paramedic Deployment
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" style="display:none">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                            Specialist Doctor Visit
+                        </a>
+                    </li>
+                    
+                </ul>               
+
+            </nav>
+
+            <!-- Page Content Holder -->
+            <div id="content" style="width:100%; padding:0px;  background:white;">
+
+                <nav class="navbar navbar-default" style="background-color:#1999f8;">
+                    <div class="container-fluid">
+                        <div class="navbar-header" style="float:left; position:relative;">
+                            <button type="button" id="sidebarCollapse" runat="server" style="background-color:#1999f8;"  class="btn btn-info navbar-btn">
+                                <i class="glyphicon glyphicon-align-justify"></i>
+                                <span></span>
+                            </button>
+                            
+                            </div>
+                        <div id="flip">
+                                <i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;<asp:Label ID="Label1" runat="server" ></asp:Label></div>
+                            
+                    </div>
+                    
+                </nav>
+                <div id="panel">
+                                 <span><i class="glyphicon glyphicon-pencil"></i>&nbsp;&nbsp;<a href="../PasswordReset.aspx">Reset Password</a></span>
+                                    <span><i class="glyphicon glyphicon-off"></i>&nbsp;&nbsp;<asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="false" OnClick="LinkButton1_Click">Sign Out</asp:LinkButton></span>
+                           
+                            </div>
+     
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+
+                           <div class="line"></div>
+                <div class="form-group" style="padding-bottom:20px; ">
+                    <span style="padding-left:20px;"><b>Copyright</b> © <b>2021</b> All rights reserved.</span>
+
+                </div>
+            </div>
+            
+        </div>
+
+
+        <!-- jQuery CDN -->
+         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+         <!-- Bootstrap Js CDN -->
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+         <script type="text/javascript">
+             $(document).ready(function () {
+                 $('#sidebarCollapse').on('click', function () {
+                     //$('#sidebar').slideToggle('active');
+                     $('#sidebar').toggleClass('active');
+                 });
+             });
+         </script>         
+
+            </form>
+    </body>
+
+
+
+</html>
